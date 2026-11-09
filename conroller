@@ -1,0 +1,87 @@
+package com.canteen;
+
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage stage) {
+
+        Label heading = new Label("SMART CANTEEN");
+        heading.setStyle(
+            "-fx-font-size: 30px;" +
+            "-fx-font-weight: bold;" +
+            "-fx-text-fill: #17365D;"
+        );
+
+        Label subtitle = new Label("Food Ordering Management System");
+        subtitle.setStyle("-fx-font-size: 16px;");
+
+        Button foodButton = new Button("Food Menu");
+        Button orderButton = new Button("Manage Orders");
+        Button receiptButton = new Button("Generate Receipt");
+        Button excelButton = new Button("Export to Excel");
+        Button logoutButton = new Button("Logout");
+
+        foodButton.setPrefWidth(220);
+        orderButton.setPrefWidth(220);
+        receiptButton.setPrefWidth(220);
+        excelButton.setPrefWidth(220);
+        logoutButton.setPrefWidth(220);
+
+        foodButton.setOnAction(e ->
+            showMessage("Food Menu", "Food Menu selected"));
+
+        orderButton.setOnAction(e ->
+            showMessage("Orders", "Order Management selected"));
+
+        receiptButton.setOnAction(e ->
+            showMessage("Receipt", "Receipt Generation selected"));
+
+        excelButton.setOnAction(e ->
+            showMessage("Excel", "Excel Export selected"));
+
+        logoutButton.setOnAction(e -> {
+            stage.close();
+        });
+
+        VBox root = new VBox(
+            20,
+            heading,
+            subtitle,
+            foodButton,
+            orderButton,
+            receiptButton,
+            excelButton,
+            logoutButton
+        );
+
+        root.setAlignment(Pos.CENTER);
+        root.setPadding(new Insets(30));
+        root.setStyle("-fx-background-color: #F4F7FB;");
+
+        Scene scene = new Scene(root, 800, 550);
+
+        stage.setTitle("Smart Canteen - Dashboard");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void showMessage(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
